@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tips & Advice — Get Billing Quotes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { background: var(--white); }
+  .page-header { padding: 140px 80px 80px; background: var(--cream); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
+  .page-header-left h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 700; color: var(--navy); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; }
+  .page-header-left h1 em { font-style: normal; color: var(--teal); }
+  .page-header-left p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 480px; }
+  .page-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+  .topic-filters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+  .topic-pill { padding: 8px 18px; border-radius: 100px; font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all 0.2s; border: 1.5px solid var(--border); background: white; color: var(--muted); text-decoration: none; }
+  .topic-pill:hover, .topic-pill.active { background: var(--navy); border-color: var(--navy); color: white; }
+  .header-cta-note { font-size: 0.82rem; color: var(--muted); text-align: right; }
+  .header-cta-note a { color: var(--teal); text-decoration: none; font-weight: 600; }
+  .blog-section { padding: 72px 80px 100px; background: white; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .blog-card-featured { grid-column: span 2; }
+  .blog-card { background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.25s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .blog-card:hover { box-shadow: 0 12px 48px rgba(0,0,0,0.09); transform: translateY(-4px); border-color: rgba(0,168,150,0.3); }
+  .card-banner { height: 180px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .blog-card-featured .card-banner { height: 240px; }
+  .banner-denials { background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 50%, #00a896 100%); }
+  .card-banner svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .banner-category-tag { position: absolute; top: 16px; left: 16px; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 5px 12px; border-radius: 100px; }
+  .banner-read-time { position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.35); color: rgba(255,255,255,0.8); font-size: 0.72rem; padding: 4px 10px; border-radius: 100px; }
+  .card-body { padding: 24px 28px 28px; display: flex; flex-direction: column; flex: 1; }
+  .card-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .card-date { font-size: 0.78rem; color: var(--muted); }
+  .card-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); }
+  .card-author { font-size: 0.78rem; color: var(--muted); }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .blog-card-featured .card-title { font-size: 1.5rem; }
+  .card-excerpt { font-size: 0.88rem; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 20px; }
+  .card-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--teal); text-decoration: none; transition: gap 0.2s; }
+  .card-link:hover { gap: 10px; }
+  .card-link::after { content: '→'; }
+  .coming-soon-card { border: 2px dashed var(--border); border-radius: 16px; padding: 48px 32px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--muted); min-height: 280px; }
+  .coming-soon-icon { font-size: 2rem; opacity: 0.4; }
+  .coming-soon-card h3 { font-size: 1rem; font-weight: 600; color: var(--navy); opacity: 0.5; }
+  .coming-soon-card p { font-size: 0.85rem; line-height: 1.6; max-width: 200px; }
+  .blog-cta-strip { background: var(--navy); padding: 64px 80px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; position: relative; overflow: hidden; }
+  .blog-cta-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(0,168,150,0.2) 0%, transparent 60%); }
+  .blog-cta-strip > * { position: relative; z-index: 1; }
+  .cta-strip-text .section-label { color: var(--teal-light); margin-bottom: 12px; }
+  .cta-strip-text h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: white; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
+  .cta-strip-text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; max-width: 420px; line-height: 1.65; }
+  @media (max-width: 1024px) {
+    .page-header { padding: 120px 40px 60px; grid-template-columns: 1fr; gap: 36px; }
+    .page-header-right { align-items: flex-start; }
+    .topic-filters { justify-content: flex-start; }
+    .header-cta-note { text-align: left; }
+    .blog-section { padding: 56px 40px 80px; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-card-featured { grid-column: span 1; }
+    .blog-cta-strip { padding: 56px 40px; flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 768px) {
+    .page-header { padding: 100px 24px 48px; }
+    .blog-section { padding: 40px 24px 64px; }
+    .blog-cta-strip { padding: 48px 24px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Get Billing<span>Quotes</span></a>
+  <ul>
+    <li><a href="index.html#how">How it Works</a></li>
+    <li><a href="index.html#pricing">Pricing Guide</a></li>
+    <li><a href="#" class="active">Tips &amp; Advice</a></li>
+  </ul>
+  <a href="quote.html" class="btn btn-primary">Get Free Quotes</a>
+  <button class="nav-hamburger" onclick="toggleMenu(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#how">How it Works</a>
+  <a href="index.html#pricing">Pricing Guide</a>
+  <a href="blog.html">Tips &amp; Advice</a>
+  <a href="quote.html" class="btn btn-primary">Get Free Quotes</a>
+</div>
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="section-label">Tips & Advice</div>
+    <h1>Straight talk for<br><em>practice managers.</em></h1>
+    <p>No fluff. Practical guides on medical billing costs, switching vendors, avoiding denials, and running a tighter revenue cycle.</p>
+  </div>
+  <div class="page-header-right">
+    <div class="topic-filters">
+      <a href="#" class="topic-pill active">All Topics</a>
+      <a href="#" class="topic-pill">Claim Denials</a>
+      <a href="#" class="topic-pill">Pricing & Costs</a>
+      <a href="#" class="topic-pill">Switching Vendors</a>
+      <a href="#" class="topic-pill">Compliance</a>
+      <a href="#" class="topic-pill">Revenue Cycle</a>
+    </div>
+    <p class="header-cta-note">Ready to compare billing companies? <a href="index.html#quote">Get free quotes →</a></p>
+  </div>
+</div>
+<section class="blog-section">
+  <div class="blog-grid">
+    <a href="https://getbillingquotes.com/hello-world/" class="blog-card blog-card-featured">
+      <div class="card-banner banner-denials">
+        <svg viewBox="0 0 600 240" preserveAspectRatio="none">
+          <circle cx="480" cy="120" r="180" fill="rgba(0,168,150,0.12)"/>
+          <circle cx="520" cy="40" r="80" fill="rgba(0,168,150,0.08)"/>
+          <rect x="60" y="140" width="28" height="60" rx="4" fill="rgba(0,168,150,0.3)"/>
+          <rect x="100" y="110" width="28" height="90" rx="4" fill="rgba(0,168,150,0.45)"/>
+          <rect x="140" y="80" width="28" height="120" rx="4" fill="rgba(0,168,150,0.6)"/>
+          <rect x="180" y="100" width="28" height="100" rx="4" fill="rgba(0,168,150,0.4)"/>
+        </svg>
+        <span class="banner-category-tag">Getting Started</span>
+        <span class="banner-read-time">1 min read</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-date">February 26, 2026</span><span class="card-dot"></span><span class="card-author">Nabil</span></div>
+        <div class="card-title">Hello world! Welcome to the Get Billing Quotes blog</div>
+        <p class="card-excerpt">Welcome to the Get Billing Quotes blog — where we share everything practice managers need to know about outsourcing billing, cutting costs, and improving collection rates.</p>
+        <span class="card-link">Read article</span>
+      </div>
+    </a>
+    <div class="coming-soon-card"><div class="coming-soon-icon">✍️</div><h3>More articles coming soon</h3><p>New guides on billing costs, denials, and switching vendors.</p></div>
+    <div class="coming-soon-card"><div class="coming-soon-icon">📋</div><h3>Claim Denials Guide</h3><p>How to reduce your denial rate and what to look for in a billing partner.</p></div>
+    <div class="coming-soon-card"><div class="coming-soon-icon">💰</div><h3>Pricing Breakdown</h3><p>What billing companies actually charge — and how to negotiate a better rate.</p></div>
+    <div class="coming-soon-card"><div class="coming-soon-icon">🔄</div><h3>Switching Vendors</h3><p>When to switch, how to transition smoothly, and what questions to ask.</p></div>
+  </div>
+</section>
+<div class="blog-cta-strip">
+  <div class="cta-strip-text">
+    <div class="section-label">Ready to Act?</div>
+    <h2>Compare billing companies<br>for your practice — free.</h2>
+    <p>Takes 2 minutes. We match you with 3 vetted billing companies that specialize in your field. No spam, no obligation.</p>
+  </div>
+  <a href="quote.html" class="btn btn-primary btn-lg">Get My Free Quotes →</a>
+</div>
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="color:white;">Get Billing<span style="color:var(--teal)">Quotes</span></a>
+      <p>Connecting independent medical practices with vetted billing companies. Free. No obligation.</p>
+    </div>
+    <div class="footer-links-group"><h4>For Practices</h4><a href="quote.html">Get Free Quotes</a><a href="index.html#how">How It Works</a><a href="index.html#pricing">Pricing Guide</a><a href="#">Tips &amp; Advice</a></div>
+    <div class="footer-links-group"><h4>For Billing Companies</h4><a href="#">Join Our Network</a><a href="#">Lead Generation</a><a href="#">Contact Us</a></div>
+    <div class="footer-links-group"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">HIPAA Compliance</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Get Billing Quotes. All rights reserved.</p>
+    <p style="color:rgba(255,255,255,0.2);">We only work with US-based billing companies.</p>
+  </div>
+</footer>
+<script>function toggleMenu(btn){btn.classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');}</script>
+</body>
+</html>

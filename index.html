@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outsource Medical Billing — Compare 3 Vetted Companies Free | Get Billing Quotes</title>
+<meta name="description" content="We don't sell billing services — we help you find the right one. Get 3 free, matched quotes from vetted medical billing companies. Takes 2 minutes. No obligation." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+<style>
+  /* INDEX.HTML PAGE-SPECIFIC STYLES ONLY */
+  body { background: var(--white); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; background: var(--cream); overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 60px 80px 80px; }
+
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: white; border: 1px solid var(--border); border-radius: 100px; padding: 8px 16px; font-size: 0.8rem; font-weight: 600; color: var(--teal); margin-bottom: 28px; width: fit-content; letter-spacing: 0.05em; text-transform: uppercase; }
+  .hero-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 4vw, 3.8rem); font-weight: 700; line-height: 1.1; color: var(--navy); letter-spacing: -0.03em; margin-bottom: 24px; }
+  .hero h1 em { font-style: normal; color: var(--teal); position: relative; }
+  .hero h1 em::after { content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 3px; background: var(--teal); opacity: 0.3; border-radius: 2px; }
+  .hero-sub { font-size: 1.1rem; color: var(--muted); line-height: 1.7; margin-bottom: 40px; max-width: 460px; }
+  .hero-cta-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+  /* HERO RIGHT */
+  .hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding: 40px; background: var(--navy); overflow: hidden; }
+  .hero-right::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(0,168,150,0.2) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(0,168,150,0.1) 0%, transparent 50%); }
+  .dashboard-mock { position: relative; width: 100%; max-width: 480px; z-index: 1; }
+  .dash-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 24px; backdrop-filter: blur(8px); margin-bottom: 16px; animation: fadeSlideUp 0.6s ease both; }
+  @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .dash-card:nth-child(2) { animation-delay: 0.15s; }
+  .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .dash-title { color: rgba(255,255,255,0.6); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .dash-badge { font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; background: rgba(0,168,150,0.2); color: var(--teal-light); font-weight: 600; }
+
+  .match-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .match-row:last-child { border-bottom: none; }
+  .match-avatar { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 800; text-align: center; line-height: 1.3; flex-shrink: 0; }
+  .match-info { flex: 1; }
+  .match-name { color: white; font-size: 0.88rem; font-weight: 600; }
+  .match-spec { color: rgba(255,255,255,0.4); font-size: 0.73rem; margin-top: 2px; }
+  .match-rate { text-align: right; }
+  .match-rate strong { color: var(--teal-light); font-size: 1rem; display: block; }
+  .match-rate span { color: rgba(255,255,255,0.4); font-size: 0.72rem; }
+
+  .mini-chart { margin-top: 4px; }
+  .chart-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .chart-label { color: rgba(255,255,255,0.5); font-size: 0.72rem; width: 90px; flex-shrink: 0; }
+  .chart-bar-wrap { flex: 1; background: rgba(255,255,255,0.08); border-radius: 4px; height: 8px; overflow: hidden; }
+  .chart-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--teal), var(--teal-light)); animation: barGrow 1s ease both; transform-origin: left; }
+  @keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .chart-val { color: white; font-size: 0.72rem; font-weight: 600; width: 36px; text-align: right; flex-shrink: 0; }
+
+  .savings-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,168,150,0.15); border: 1px solid rgba(0,168,150,0.3); border-radius: 8px; padding: 12px 16px; margin-top: 4px; width: 100%; }
+  .savings-icon { font-size: 1.3rem; }
+  .savings-text strong { color: white; font-size: 0.9rem; display: block; }
+  .savings-text span { color: rgba(255,255,255,0.5); font-size: 0.75rem; }
+
+  /* =====================
+     TRUST BAR — strip layout on all screens
+     ===================== */
+  .trust-bar { background: var(--navy); }
+  .trust-bar-inner {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap;
+    padding: 16px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    gap: 0;
+  }
+  .trust-stat {
+    display: flex; align-items: center; gap: 7px;
+    padding: 8px 20px;
+    text-align: left;
+  }
+  .trust-stat strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: white; letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .trust-stat span {
+    font-size: 0.78rem; color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+  }
+  .trust-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.15); flex-shrink: 0; align-self: center; }
+  .trust-specialties { display: flex; align-items: center; gap: 8px; padding: 12px 40px; flex-wrap: wrap; background: rgba(0,0,0,0.18); border-top: 1px solid rgba(255,255,255,0.06); }
+  .trust-spec-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--teal-light); font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .trust-spec-tag { font-size: 0.78rem; padding: 4px 12px; border-radius: 100px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.15); white-space: nowrap; }
+  .trust-spec-tag:hover { background: rgba(0,168,150,0.2); border-color: rgba(0,168,150,0.4); color: var(--teal-light); }
+
+  /* SECTIONS */
+  section { padding: 100px 80px; }
+  .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--teal); font-weight: 600; margin-bottom: 16px; }
+  h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3vw, 2.8rem); color: var(--navy); line-height: 1.15; letter-spacing: -0.03em; }
+
+  /* WHY */
+  .why-section { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-left h2 { margin-bottom: 20px; }
+  .why-left p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 36px; }
+  .reasons { display: flex; flex-direction: column; gap: 24px; }
+  .reason { display: flex; gap: 20px; align-items: flex-start; padding: 24px; background: white; border-radius: 12px; border: 1px solid var(--border); transition: all 0.25s ease; }
+  .reason:hover { border-color: var(--teal); transform: translateX(4px); box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+  .reason-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--teal); opacity: 0.3; line-height: 1; flex-shrink: 0; min-width: 40px; }
+  .reason h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .reason p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .why-visual { position: relative; height: 480px; display: flex; align-items: center; justify-content: center; }
+
+  /* HOW IT WORKS */
+  .how-section { background: white; }
+  .how-header { text-align: center; max-width: 600px; margin: 0 auto 72px; }
+  .how-header h2 { margin-bottom: 16px; }
+  .how-header p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; position: relative; }
+  .steps::before { content: ''; position: absolute; top: 52px; left: calc(16.67% + 20px); right: calc(16.67% + 20px); height: 1px; background: linear-gradient(90deg, var(--teal), var(--teal-light), var(--teal)); z-index: 0; }
+  .step { padding: 40px 36px; text-align: center; position: relative; z-index: 1; }
+  .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--navy); color: white; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; position: relative; z-index: 2; box-shadow: 0 0 0 6px white; }
+  .step:nth-child(2) .step-num { background: var(--teal); }
+  .step h3 { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+  .step p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+  /* PRICING */
+  .pricing-section { background: var(--navy); color: white; padding: 100px 80px; }
+  .pricing-header { max-width: 600px; margin-bottom: 60px; }
+  .pricing-header .section-label { color: var(--teal-light); }
+  .pricing-header h2 { color: white; margin-bottom: 16px; }
+  .pricing-header p { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 48px; }
+  .price-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 28px 24px; transition: all 0.25s; }
+  .price-card:hover { background: rgba(255,255,255,0.1); border-color: var(--teal); }
+  .price-card.featured { background: var(--teal); border-color: var(--teal); }
+  .price-specialty { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+  .price-card.featured .price-specialty { color: rgba(255,255,255,0.8); }
+  .price-range { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
+  .price-note { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 6px; }
+  .price-card.featured .price-note { color: rgba(255,255,255,0.75); }
+  .pricing-bar-wrap { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 32px 36px; }
+  .pb-title { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 24px; }
+  .pb-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .pb-label { color: rgba(255,255,255,0.6); font-size: 0.82rem; width: 130px; flex-shrink: 0; }
+  .pb-track { flex: 1; background: rgba(255,255,255,0.08); border-radius: 100px; height: 10px; overflow: hidden; }
+  .pb-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--teal), var(--teal-light)); animation: barGrow 1.2s ease both; }
+  .pb-fill.muted { background: rgba(255,255,255,0.15); }
+  .pb-val { color: white; font-weight: 600; font-size: 0.85rem; width: 50px; text-align: right; flex-shrink: 0; }
+
+  /* TESTIMONIALS */
+  .testimonials-section { background: var(--cream); padding: 100px 80px; }
+  .test-header { margin-bottom: 60px; }
+  .test-header h2 { margin-bottom: 12px; }
+  .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .test-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: all 0.25s; }
+  .test-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); transform: translateY(-3px); }
+  .test-stars { color: #f59e0b; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 16px; }
+  .test-quote { font-size: 0.95rem; color: var(--text); line-height: 1.75; margin-bottom: 24px; font-style: italic; }
+  .test-author { display: flex; align-items: center; gap: 12px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .test-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; color: white; flex-shrink: 0; }
+  .test-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+  .test-role { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+  /* STATES */
+  .states-section { background: white; padding: 80px; overflow: hidden; }
+  .states-header { margin-bottom: 40px; }
+  .states-header h2 { margin-bottom: 12px; }
+  .states-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; width: 100%; }
+  .state-pill { text-align: center; padding: 12px 8px; border-radius: 8px; background: var(--cream); font-size: 0.82rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; border: 1px solid transparent; text-decoration: none; display: block; min-width: 0; word-break: break-word; }
+  .state-pill:hover { background: white; border-color: var(--teal); color: var(--teal); }
+
+  /* FAQ */
+  .faq-section { background: var(--cream); }
+  .faq-container { max-width: 780px; margin: 0 auto; }
+  .faq-header { margin-bottom: 52px; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; cursor: pointer; gap: 20px; }
+  .faq-q strong { font-size: 1rem; color: var(--navy); font-weight: 600; line-height: 1.4; }
+  .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; transition: all 0.25s; }
+  .faq-item.open .faq-icon { background: var(--teal); transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s; }
+  .faq-item.open .faq-a { max-height: 200px; padding-top: 16px; }
+  .faq-a p { color: var(--muted); font-size: 0.95rem; line-height: 1.75; }
+
+  /* CTA */
+  .cta-section { background: var(--navy); padding: 120px 80px; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(0,168,150,0.25) 0%, transparent 65%); }
+  .cta-section > * { position: relative; z-index: 1; }
+  .cta-section .section-label { color: var(--teal-light); margin-bottom: 20px; }
+  .cta-section h2 { color: white; font-size: clamp(2.2rem, 4vw, 3.4rem); margin-bottom: 20px; }
+  .cta-section p { color: rgba(255,255,255,0.6); font-size: 1.1rem; max-width: 520px; margin: 0 auto 48px; line-height: 1.7; }
+  .cta-perks { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; }
+  .cta-perk { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 0.88rem; }
+  .cta-perk::before { content: '✓'; color: var(--teal-light); font-weight: 700; }
+
+  /* PAGE-SPECIFIC RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 100px 40px 60px; }
+    .hero-right { display: none; }
+    .why-section { grid-template-columns: 1fr; gap: 40px; }
+    .why-visual { display: none; }
+    .steps { grid-template-columns: 1fr; }
+    .steps::before { display: none; }
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    .test-grid { grid-template-columns: 1fr; }
+    .states-grid { grid-template-columns: repeat(3, 1fr); }
+    .states-section { padding: 60px 24px; }
+    .trust-bar-inner { padding: 12px 24px; }
+    .trust-specialties { padding: 10px 24px; }
+    .cta-section { padding: 80px 40px; }
+  }
+  @media (max-width: 768px) {
+    .hero-left { padding: 80px 24px 48px; }
+    .trust-bar-inner { padding: 10px 16px; }
+    .trust-stat { padding: 6px 10px; }
+    .trust-specialties { padding: 8px 16px; gap: 6px; }
+    .cta-section { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Get Billing<span>Quotes</span></a>
+  <ul>
+    <li><a href="#how">How it Works</a></li>
+    <li><a href="#pricing">Pricing Guide</a></li>
+    <li><a href="blog.html">Tips &amp; Advice</a></li>
+  </ul>
+  <a href="quote.html" class="btn btn-primary">Get Free Quotes</a>
+  <button class="nav-hamburger" onclick="toggleMenu(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#how">How it Works</a>
+  <a href="#pricing">Pricing Guide</a>
+  <a href="blog.html">Tips &amp; Advice</a>
+  <a href="quote.html" class="btn btn-primary">Get Free Quotes</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Free · No Obligation</div>
+    <h1>Outsource Medical Billing —<br><em>Find the Right Fit.</em></h1>
+    <p class="hero-sub">Small and independent practices rarely have time to vet billing companies properly. We match you with 3 that already specialize in your field — compare quotes, ask questions, decide at your own pace.</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;background:#fdf6e3;border-left:3px solid #d4820a;padding:14px 16px;border-radius:0 8px 8px 0;margin:20px 0;font-size:0.9rem;line-height:1.55;color:var(--navy);"><span style="font-weight:700;color:#d4820a;white-space:nowrap;">We don't sell billing services.</span><span>We help you find the right one. Every company you hear from has already been matched to your specialty, size, and location.</span></div>
+    <div class="hero-cta-group">
+      <a href="quote.html" class="btn btn-primary btn-lg">Get My Free Quotes</a>
+      <a href="#how" class="btn btn-outline btn-lg">See How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="dashboard-mock">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span class="dash-title">Your Matched Providers</span>
+          <span class="dash-badge">3 Matches Found</span>
+        </div>
+        <div class="match-row">
+          <div class="match-avatar" style="background: rgba(0,168,150,0.18); color: #02c5ae;">INT<br>MED</div>
+          <div class="match-info">
+            <div class="match-name">Internal Medicine Specialist</div>
+            <div class="match-spec">Matched to your specialty · 15 yrs exp</div>
+          </div>
+          <div class="match-rate"><strong>3.2%</strong><span>of collections</span></div>
+        </div>
+        <div class="match-row">
+          <div class="match-avatar" style="background: rgba(59,130,246,0.18); color: #60a5fa;">MULTI<br>SPEC</div>
+          <div class="match-info">
+            <div class="match-name">Multi-Specialty Billing Expert</div>
+            <div class="match-spec">Matched to your location · 22 yrs exp</div>
+          </div>
+          <div class="match-rate"><strong>4.1%</strong><span>of collections</span></div>
+        </div>
+        <div class="match-row">
+          <div class="match-avatar" style="background: rgba(168,85,247,0.18); color: #c084fc;">RCM<br>PRO</div>
+          <div class="match-info">
+            <div class="match-name">Revenue Cycle Management Pro</div>
+            <div class="match-spec">Matched to your practice size · 9 yrs exp</div>
+          </div>
+          <div class="match-rate"><strong>3.8%</strong><span>of collections</span></div>
+        </div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-header">
+          <span class="dash-title">Avg. Denial Rate by Billing Type</span>
+        </div>
+        <div class="mini-chart">
+          <div class="chart-row">
+            <span class="chart-label">Outsourced Billing</span>
+            <div class="chart-bar-wrap"><div class="chart-bar" style="width:32%;"></div></div>
+            <span class="chart-val">6.2%</span>
+          </div>
+          <div class="chart-row">
+            <span class="chart-label">In-house (avg)</span>
+            <div class="chart-bar-wrap"><div class="chart-bar" style="width:80%; background: rgba(255,255,255,0.2);"></div></div>
+            <span class="chart-val">19.8%</span>
+          </div>
+        </div>
+        <div class="savings-pill">
+          <span class="savings-icon">📈</span>
+          <div class="savings-text">
+            <strong>13.6% fewer denials on average</strong>
+            <span>when switching to an outsourced specialist</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-stat">
+      <strong>100+</strong>
+      <span>Vetted billing companies</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat">
+      <strong>60+</strong>
+      <span>Medical specialties</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat">
+      <strong>All 50</strong>
+      <span>US states served</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat">
+      <strong>Free</strong>
+      <span>No cost to practices</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat">
+      <strong>2 min</strong>
+      <span>To get matched</span>
+    </div>
+  </div>
+  <div class="trust-specialties">
+    <span class="trust-spec-label">Serving:</span>
+    <span class="trust-spec-tag">Cardiology</span>
+    <span class="trust-spec-tag">Internal Medicine</span>
+    <span class="trust-spec-tag">Orthopedics</span>
+    <span class="trust-spec-tag">Dermatology</span>
+    <span class="trust-spec-tag">Behavioral Health</span>
+    <span class="trust-spec-tag">Pediatrics</span>
+    <span class="trust-spec-tag">OB/GYN</span>
+    <span class="trust-spec-tag">Psychiatry</span>
+    <span class="trust-spec-tag">Neurology</span>
+    <span class="trust-spec-tag">Physical Therapy</span>
+    <span class="trust-spec-tag">+ 52 more specialties</span>
+  </div>
+</div>
+
+<!-- WHY -->
+<section class="why-section" id="why">
+  <div class="why-left">
+    <div class="section-label">Why It Matters</div>
+    <h2>Why Practices Are Switching to Outsourced Billing</h2>
+    <p>Managing billing in-house pulls your team away from patient care. The practices that make the switch almost always say the same thing: they wish they'd done it sooner.</p>
+    <div class="reasons">
+      <div class="reason">
+        <div class="reason-num">01</div>
+        <div>
+          <h3>You're Losing Money on Denials</h3>
+          <p>The average claim denial rate is around 20%. Most in-house billing teams can't appeal every one. A specialist company does — it's their full-time job.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="reason-num">02</div>
+        <div>
+          <h3>In-House Costs More Than You Think</h3>
+          <p>Salary, benefits, training, turnover — an in-house biller costs $45,000–$65,000/year. Billing companies charge 3–8% of collections and only get paid when you do.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="reason-num">03</div>
+        <div>
+          <h3>Your Team's Time Has a Better Use</h3>
+          <p>Every hour on billing paperwork is an hour not spent on patients. Outsourcing gives your staff that time back — and typically improves collection rates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="why-visual">
+    <svg width="400" height="440" viewBox="0 0 400 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="20" width="360" height="400" rx="20" fill="#0d1b2a"/>
+      <text x="40" y="60" font-family="DM Sans" font-size="12" fill="rgba(255,255,255,0.5)" letter-spacing="1">ANNUAL COST COMPARISON</text>
+      <text x="100" y="95" text-anchor="middle" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,0.5)">In-House Biller</text>
+      <rect x="60" y="100" width="80" height="200" rx="8" fill="rgba(239,68,68,0.12)"/>
+      <rect x="60" y="200" width="80" height="100" fill="rgba(239,68,68,0.5)"><animate attributeName="height" from="0" to="100" dur="1.2s" fill="freeze" begin="0.2s"/><animate attributeName="y" from="300" to="200" dur="1.2s" fill="freeze" begin="0.2s"/></rect>
+      <rect x="60" y="160" width="80" height="40" fill="rgba(239,68,68,0.35)"><animate attributeName="height" from="0" to="40" dur="1s" fill="freeze" begin="0.5s"/><animate attributeName="y" from="200" to="160" dur="1s" fill="freeze" begin="0.5s"/></rect>
+      <rect x="60" y="100" width="80" height="60" rx="8 8 0 0" fill="rgba(239,68,68,0.25)"><animate attributeName="height" from="0" to="60" dur="0.8s" fill="freeze" begin="0.8s"/><animate attributeName="y" from="160" to="100" dur="0.8s" fill="freeze" begin="0.8s"/></rect>
+      <text x="100" y="320" text-anchor="middle" font-family="Playfair Display" font-size="18" font-weight="700" fill="white">$55k+</text>
+      <text x="100" y="338" text-anchor="middle" font-family="DM Sans" font-size="10" fill="rgba(255,255,255,0.4)">per year</text>
+      <text x="280" y="95" text-anchor="middle" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,0.5)">Outsourced Billing</text>
+      <rect x="240" y="100" width="80" height="200" rx="8" fill="rgba(0,168,150,0.08)"/>
+      <rect x="240" y="230" width="80" height="70" fill="rgba(0,168,150,0.5)"><animate attributeName="height" from="0" to="70" dur="1.2s" fill="freeze" begin="0.2s"/><animate attributeName="y" from="300" to="230" dur="1.2s" fill="freeze" begin="0.2s"/></rect>
+      <rect x="240" y="220" width="80" height="10" rx="8 8 0 0" fill="rgba(0,168,150,0.7)"><animate attributeName="height" from="0" to="10" dur="0.3s" fill="freeze" begin="1.4s"/><animate attributeName="y" from="230" to="220" dur="0.3s" fill="freeze" begin="1.4s"/></rect>
+      <text x="280" y="320" text-anchor="middle" font-family="Playfair Display" font-size="18" font-weight="700" fill="#02c5ae">3–8%</text>
+      <text x="280" y="338" text-anchor="middle" font-family="DM Sans" font-size="10" fill="rgba(255,255,255,0.4)">of collections</text>
+      <line x1="200" y1="100" x2="200" y2="310" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4 4"/>
+      <circle cx="200" cy="205" r="18" fill="#0d1b2a" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text x="200" y="210" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="700" fill="rgba(255,255,255,0.5)">VS</text>
+      <rect x="40" y="360" width="10" height="10" rx="2" fill="rgba(239,68,68,0.5)"/>
+      <text x="56" y="370" font-family="DM Sans" font-size="10" fill="rgba(255,255,255,0.5)">Salary + benefits + training</text>
+      <rect x="200" y="360" width="10" height="10" rx="2" fill="rgba(0,168,150,0.5)"/>
+      <text x="216" y="370" font-family="DM Sans" font-size="10" fill="rgba(255,255,255,0.5)">% of actual collections only</text>
+      <text x="200" y="408" text-anchor="middle" font-family="DM Sans" font-size="10" fill="rgba(255,255,255,0.3)">Only get paid when you do — no fixed overhead</text>
+    </svg>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-header">
+    <div class="section-label">The Process</div>
+    <h2>How Get Billing Quotes Works</h2>
+    <p>We do the vetting. You do the comparing. The whole thing takes about two minutes on your end.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Tell Us About Your Practice</h3>
+      <p>Select your specialty and answer a few quick questions about your practice size and current billing setup. No technical knowledge needed.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>We Match You With 3 Vetted Partners</h3>
+      <p>Every company in your shortlist has been matched on specialty, size, and location — not a random list. Every match is already relevant before they reach out.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Compare, Ask Questions, Decide</h3>
+      <p>Hear from each company, ask what you need, and choose the one that feels right. No obligation, no deadline, no pressure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-header">
+    <div class="section-label">Pricing Guide</div>
+    <h2>What Do Medical Billing Companies Actually Charge?</h2>
+    <p>Rates vary by specialty, claim volume, and services included. Here's a realistic breakdown — and why comparing quotes matters more than averages.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-specialty">Primary Care</div>
+      <div class="price-range">3–5%</div>
+      <div class="price-note">of monthly collections</div>
+    </div>
+    <div class="price-card featured">
+      <div class="price-specialty">Most Common Range</div>
+      <div class="price-range">4–6%</div>
+      <div class="price-note">national average across specialties</div>
+    </div>
+    <div class="price-card">
+      <div class="price-specialty">High-Volume Practices</div>
+      <div class="price-range">2.9–4%</div>
+      <div class="price-note">lower rates for larger volumes</div>
+    </div>
+    <div class="price-card">
+      <div class="price-specialty">Complex Specialties</div>
+      <div class="price-range">6–8%</div>
+      <div class="price-note">behavioral health, rare specialties</div>
+    </div>
+  </div>
+  <div class="pricing-bar-wrap">
+    <div class="pb-title">Why comparing quotes beats going with the first offer</div>
+    <div class="pb-row">
+      <span class="pb-label">First quote received</span>
+      <div class="pb-track"><div class="pb-fill" style="width:82%;"></div></div>
+      <span class="pb-val">5.8%</span>
+    </div>
+    <div class="pb-row">
+      <span class="pb-label">After comparing 2</span>
+      <div class="pb-track"><div class="pb-fill" style="width:60%;"></div></div>
+      <span class="pb-val">4.2%</span>
+    </div>
+    <div class="pb-row">
+      <span class="pb-label">After comparing 3</span>
+      <div class="pb-track"><div class="pb-fill" style="width:44%;"></div></div>
+      <span class="pb-val">3.1%</span>
+    </div>
+    <div class="pb-row" style="margin-top:8px; padding-top:16px; border-top: 1px solid rgba(255,255,255,0.06);">
+      <span class="pb-label" style="color:rgba(255,255,255,0.4);">In-house biller cost</span>
+      <div class="pb-track"><div class="pb-fill muted" style="width:90%;"></div></div>
+      <span class="pb-val" style="color:rgba(255,255,255,0.4);">$55k+</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="test-header">
+    <div class="section-label">From Real Practices</div>
+    <h2>What Practices Are Saying</h2>
+    <p style="color: var(--muted); font-size: 1rem; margin-top: 12px;">No obligation. No pressure. Just practices that found a better fit.</p>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"We'd been with the same billing company for 6 years and had no idea if we were getting a good deal. Get Billing Quotes connected us with two options that both charged less and had better denial rates. Switching was easier than we expected."</p>
+      <div class="test-author">
+        <div class="test-avatar" style="background: #1e7e74;">SK</div>
+        <div><div class="test-name">Sarah K.</div><div class="test-role">Office Manager, Family Medicine · Austin, TX</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"I was skeptical because I'd heard these 'free quote' services just sell your number to a dozen companies. Not the case here — we only heard from 3, they were all a good fit, and we picked one we're really happy with."</p>
+      <div class="test-author">
+        <div class="test-avatar" style="background: #1a3f6f;">DR</div>
+        <div><div class="test-name">Dr. R. Mendes</div><div class="test-role">Solo Practitioner, Psychiatry · Chicago, IL</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"Our denial rate went from 22% to under 8% in the first 4 months after switching. I wish someone had pointed us toward this service years ago — it genuinely changed how our practice runs."</p>
+      <div class="test-author">
+        <div class="test-avatar" style="background: #5c3d8f;">MC</div>
+        <div><div class="test-name">Maria C.</div><div class="test-role">Practice Administrator, Orthopedics · Miami, FL</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL 50 STATES -->
+<section class="states-section">
+  <div class="states-header">
+    <div class="section-label">Nationwide Coverage</div>
+    <h2>Find Billing Companies in Your State</h2>
+    <p style="color: var(--muted); margin-top: 12px; font-size: 0.95rem;">We have vetted partners across all 50 states. Click your state to see available matches.</p>
+  </div>
+  <div class="states-grid">
+    <a href="#" class="state-pill">Alabama</a>
+    <a href="#" class="state-pill">Alaska</a>
+    <a href="#" class="state-pill">Arizona</a>
+    <a href="#" class="state-pill">Arkansas</a>
+    <a href="#" class="state-pill">California</a>
+    <a href="#" class="state-pill">Colorado</a>
+    <a href="#" class="state-pill">Connecticut</a>
+    <a href="#" class="state-pill">Delaware</a>
+    <a href="#" class="state-pill">Florida</a>
+    <a href="#" class="state-pill">Georgia</a>
+    <a href="#" class="state-pill">Hawaii</a>
+    <a href="#" class="state-pill">Idaho</a>
+    <a href="#" class="state-pill">Illinois</a>
+    <a href="#" class="state-pill">Indiana</a>
+    <a href="#" class="state-pill">Iowa</a>
+    <a href="#" class="state-pill">Kansas</a>
+    <a href="#" class="state-pill">Kentucky</a>
+    <a href="#" class="state-pill">Louisiana</a>
+    <a href="#" class="state-pill">Maine</a>
+    <a href="#" class="state-pill">Maryland</a>
+    <a href="#" class="state-pill">Massachusetts</a>
+    <a href="#" class="state-pill">Michigan</a>
+    <a href="#" class="state-pill">Minnesota</a>
+    <a href="#" class="state-pill">Mississippi</a>
+    <a href="#" class="state-pill">Missouri</a>
+    <a href="#" class="state-pill">Montana</a>
+    <a href="#" class="state-pill">Nebraska</a>
+    <a href="#" class="state-pill">Nevada</a>
+    <a href="#" class="state-pill">New Hampshire</a>
+    <a href="#" class="state-pill">New Jersey</a>
+    <a href="#" class="state-pill">New Mexico</a>
+    <a href="#" class="state-pill">New York</a>
+    <a href="#" class="state-pill">North Carolina</a>
+    <a href="#" class="state-pill">North Dakota</a>
+    <a href="#" class="state-pill">Ohio</a>
+    <a href="#" class="state-pill">Oklahoma</a>
+    <a href="#" class="state-pill">Oregon</a>
+    <a href="#" class="state-pill">Pennsylvania</a>
+    <a href="#" class="state-pill">Rhode Island</a>
+    <a href="#" class="state-pill">South Carolina</a>
+    <a href="#" class="state-pill">South Dakota</a>
+    <a href="#" class="state-pill">Tennessee</a>
+    <a href="#" class="state-pill">Texas</a>
+    <a href="#" class="state-pill">Utah</a>
+    <a href="#" class="state-pill">Vermont</a>
+    <a href="#" class="state-pill">Virginia</a>
+    <a href="#" class="state-pill">Washington</a>
+    <a href="#" class="state-pill">West Virginia</a>
+    <a href="#" class="state-pill">Wisconsin</a>
+    <a href="#" class="state-pill">Wyoming</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-container">
+    <div class="faq-header">
+      <div class="section-label">Common Questions</div>
+      <h2>Everything You Want to Know</h2>
+    </div>
+    <div class="faq-item open">
+      <div class="faq-q" onclick="toggleFaq(this)"><strong>How does Get Billing Quotes work?</strong><div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>Fill out a short form about your practice — specialty, size, current billing setup. We match you with 3 vetted billing companies that fit your profile, and they reach out to you directly. The whole form takes about 2 minutes. You're not committing to anything.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><strong>Is there a cost to use this service?</strong><div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>No — it's completely free for practices. The billing companies pay to be part of our vetted network, not you. You'll never receive an invoice or be asked for a credit card.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><strong>Will I get spammed by a dozen companies?</strong><div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>No. You'll only hear from the 3 companies we match you with — no more. We don't sell your information or pass it to any third parties outside of your matched providers.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><strong>Do I have to switch billing companies?</strong><div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>Not at all. A lot of practices just want to know if they're getting a good deal. Compare the quotes, ask questions, and decide in your own time. No obligation, no pressure.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><strong>How are billing companies vetted?</strong><div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>Every company in our network has been verified for specialty experience, US-based operations, HIPAA compliance standards, and track record of performance. We review denial rates, client retention, and billing accuracy before bringing a company onto the platform.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><strong>What specialties do you support?</strong><div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>We support 60+ specialties including Internal Medicine, Cardiology, Orthopedics, Dermatology, Behavioral Health, Pediatrics, OB/GYN, Psychiatry, Neurology, Physical Therapy, and many more. Fill out the form and we'll confirm what's available for your field.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="quote">
+  <div class="section-label">Get Started</div>
+  <h2>Ready to Find Your Billing Match?</h2>
+  <p>Free. Takes 2 minutes. No obligation. Tell us about your practice and we'll handle the rest.</p>
+  <a href="quote.html" class="btn btn-primary btn-lg">Get My Free Quotes →</a>
+  <div class="cta-perks">
+    <span class="cta-perk">100+ vetted billing companies</span>
+    <span class="cta-perk">All 50 states</span>
+    <span class="cta-perk">60+ specialties</span>
+    <span class="cta-perk">No spam, ever</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="color: white;">Get Billing<span style="color: var(--teal)">Quotes</span></a>
+      <p>Connecting independent medical practices with vetted billing companies. Free. No obligation.</p>
+    </div>
+    <div class="footer-links-group">
+      <h4>For Practices</h4>
+      <a href="quote.html">Get Free Quotes</a>
+      <a href="#">How It Works</a>
+      <a href="#">Pricing Guide</a>
+      <a href="#">Tips & Advice</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>For Billing Companies</h4>
+      <a href="#">Join Our Network</a>
+      <a href="#">Lead Generation</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">HIPAA Compliance</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Get Billing Quotes. All rights reserved.</p>
+    <p style="color: rgba(255,255,255,0.2);">We only work with US-based billing companies.</p>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reason, .step, .test-card, .price-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+  function toggleMenu(btn) {
+    btn.classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

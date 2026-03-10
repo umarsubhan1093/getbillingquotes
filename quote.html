@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Your Free Billing Quotes — Get Billing Quotes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { background: var(--cream); min-height: 100vh; }
+  .page-wrap { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+  .left-panel { background: var(--navy); position: relative; overflow: hidden; padding: 72px 64px; display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - 80px); }
+  .left-panel::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 30%, rgba(0,168,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 90% 80%, rgba(0,168,150,0.08) 0%, transparent 50%); }
+  .left-panel > * { position: relative; z-index: 1; }
+  .left-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,168,150,0.15); border: 1px solid rgba(0,168,150,0.3); border-radius: 100px; padding: 7px 16px; font-size: 0.75rem; font-weight: 600; color: var(--teal-light); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 32px; width: fit-content; }
+  .left-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--teal-light); animation: pulse 2s infinite; }
+  .left-panel h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 2.5vw, 2.6rem); font-weight: 700; color: white; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 20px; }
+  .left-panel h2 em { font-style: normal; color: var(--teal-light); }
+  .left-panel > p { color: rgba(255,255,255,0.55); font-size: 1rem; line-height: 1.7; margin-bottom: 48px; max-width: 380px; }
+  .trust-points { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+  .trust-point { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; }
+  .trust-point-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(0,168,150,0.15); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .trust-point-text strong { display: block; font-size: 0.88rem; font-weight: 600; color: white; margin-bottom: 3px; }
+  .trust-point-text span { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+  .left-stats { display: flex; gap: 0; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .left-stat { flex: 1; text-align: center; padding: 0 8px; }
+  .left-stat:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.08); }
+  .left-stat strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
+  .left-stat span { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 4px; display: block; }
+  .right-panel { background: var(--cream); padding: 40px 64px; display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - 80px); }
+  .tally-frame { width: 100%; min-height: 600px; border: none; background: transparent; }
+  @media (max-width: 1024px) { .page-wrap { grid-template-columns: 1fr; } .left-panel { display: none; } .right-panel { padding: 48px 36px 64px; min-height: auto; } }
+  @media (max-width: 768px) { .right-panel { padding: 36px 24px 48px; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Get Billing<span>Quotes</span></a>
+  <ul>
+    <li><a href="index.html#how">How it Works</a></li>
+    <li><a href="index.html#pricing">Pricing Guide</a></li>
+    <li><a href="blog.html">Tips &amp; Advice</a></li>
+  </ul>
+  <a href="quote.html" class="btn btn-primary">Get Free Quotes</a>
+  <button class="nav-hamburger" onclick="toggleMenu(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#how">How it Works</a>
+  <a href="index.html#pricing">Pricing Guide</a>
+  <a href="blog.html">Tips &amp; Advice</a>
+  <a href="quote.html" class="btn btn-primary">Get Free Quotes</a>
+</div>
+<div class="page-wrap">
+  <div class="left-panel">
+    <div class="left-badge">Free · No Obligation</div>
+    <h2>You're 2 minutes away from <em>3 matched quotes.</em></h2>
+    <p>Tell us about your practice and we'll connect you with billing companies that already specialize in your field — matched on specialty, size, and location.</p>
+    <div class="trust-points">
+      <div class="trust-point"><div class="trust-point-icon">🎯</div><div class="trust-point-text"><strong>Matched, not blasted</strong><span>You only hear from 3 companies — all pre-matched to your specialty and location.</span></div></div>
+      <div class="trust-point"><div class="trust-point-icon">🔒</div><div class="trust-point-text"><strong>No spam, ever</strong><span>Your info is never sold or shared outside your 3 matched providers.</span></div></div>
+      <div class="trust-point"><div class="trust-point-icon">💸</div><div class="trust-point-text"><strong>Completely free</strong><span>Billing companies pay to be in our network. There's no cost to you.</span></div></div>
+    </div>
+    <div class="left-stats">
+      <div class="left-stat"><strong>100+</strong><span>Vetted companies</span></div>
+      <div class="left-stat"><strong>60+</strong><span>Specialties</span></div>
+      <div class="left-stat"><strong>All 50</strong><span>States</span></div>
+    </div>
+  </div>
+  <div class="right-panel">
+    <iframe class="tally-frame" src="https://tally.so/embed/Y5ZVxd?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" scrolling="no" title="Get Free Billing Quotes"></iframe>
+    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+  </div>
+</div>
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="color:white;">Get Billing<span style="color:var(--teal)">Quotes</span></a>
+      <p>Connecting independent medical practices with vetted billing companies. Free. No obligation.</p>
+    </div>
+    <div class="footer-links-group"><h4>For Practices</h4><a href="#">Get Free Quotes</a><a href="index.html#how">How It Works</a><a href="index.html#pricing">Pricing Guide</a><a href="blog.html">Tips &amp; Advice</a></div>
+    <div class="footer-links-group"><h4>For Billing Companies</h4><a href="#">Join Our Network</a><a href="#">Lead Generation</a><a href="#">Contact Us</a></div>
+    <div class="footer-links-group"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">HIPAA Compliance</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Get Billing Quotes. All rights reserved.</p>
+    <p style="color:rgba(255,255,255,0.2);">We only work with US-based billing companies.</p>
+  </div>
+</footer>
+<script>function toggleMenu(btn){btn.classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');}</script>
+</body>
+</html>
