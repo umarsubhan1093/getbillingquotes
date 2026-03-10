@@ -6,35 +6,330 @@
 <title>Get Your Free Billing Quotes — Get Billing Quotes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
 <style>
-  body { background: var(--cream); min-height: 100vh; }
-  .page-wrap { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
-  .left-panel { background: var(--navy); position: relative; overflow: hidden; padding: 72px 64px; display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - 80px); }
-  .left-panel::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 30%, rgba(0,168,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 90% 80%, rgba(0,168,150,0.08) 0%, transparent 50%); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b2a;
+    --teal: #00a896;
+    --teal-light: #02c5ae;
+    --cream: #f7f4ef;
+    --text: #1a1a2e;
+    --muted: #5c6b7a;
+    --border: #ddd8cf;
+    --white: #ffffff;
+    --error: #e53e3e;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--cream); overflow-x: hidden; min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); text-decoration: none; letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--teal); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  nav ul a:hover { color: var(--navy); }
+  .btn { display: inline-block; padding: 13px 28px; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; text-decoration: none; transition: all 0.2s ease; border: none; }
+  .btn-primary { background: var(--teal); color: white; }
+  .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,168,150,0.3); }
+
+  /* PAGE LAYOUT */
+  .page-wrap {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  /* LEFT PANEL — dark, stays fixed visually */
+  .left-panel {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    padding: 72px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+  }
+  .left-panel::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 30%, rgba(0,168,150,0.2) 0%, transparent 55%),
+                radial-gradient(ellipse at 90% 80%, rgba(0,168,150,0.08) 0%, transparent 50%);
+  }
   .left-panel > * { position: relative; z-index: 1; }
-  .left-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,168,150,0.15); border: 1px solid rgba(0,168,150,0.3); border-radius: 100px; padding: 7px 16px; font-size: 0.75rem; font-weight: 600; color: var(--teal-light); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 32px; width: fit-content; }
+
+  .left-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,168,150,0.15);
+    border: 1px solid rgba(0,168,150,0.3);
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-size: 0.75rem; font-weight: 600; color: var(--teal-light);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 32px; width: fit-content;
+  }
   .left-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--teal-light); animation: pulse 2s infinite; }
-  .left-panel h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 2.5vw, 2.6rem); font-weight: 700; color: white; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 20px; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+  .left-panel h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 2.5vw, 2.6rem);
+    font-weight: 700; color: white;
+    line-height: 1.15; letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
   .left-panel h2 em { font-style: normal; color: var(--teal-light); }
-  .left-panel > p { color: rgba(255,255,255,0.55); font-size: 1rem; line-height: 1.7; margin-bottom: 48px; max-width: 380px; }
+
+  .left-panel > p {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem; line-height: 1.7;
+    margin-bottom: 48px;
+    max-width: 380px;
+  }
+
+  /* Trust points */
   .trust-points { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
-  .trust-point { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; }
-  .trust-point-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(0,168,150,0.15); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .trust-point {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+  }
+  .trust-point-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(0,168,150,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
   .trust-point-text strong { display: block; font-size: 0.88rem; font-weight: 600; color: white; margin-bottom: 3px; }
   .trust-point-text span { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
-  .left-stats { display: flex; gap: 0; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+  /* Mini stats row */
+  .left-stats {
+    display: flex; gap: 0;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
   .left-stat { flex: 1; text-align: center; padding: 0 8px; }
   .left-stat:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.08); }
   .left-stat strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
   .left-stat span { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 4px; display: block; }
-  .right-panel { background: var(--cream); padding: 40px 64px; display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - 80px); }
-  .tally-frame { width: 100%; min-height: 600px; border: none; background: transparent; }
-  @media (max-width: 1024px) { .page-wrap { grid-template-columns: 1fr; } .left-panel { display: none; } .right-panel { padding: 48px 36px 64px; min-height: auto; } }
-  @media (max-width: 768px) { .right-panel { padding: 36px 24px 48px; } }
+
+  /* RIGHT PANEL — form */
+  .right-panel {
+    background: var(--cream);
+    padding: 40px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+  }
+
+  .tally-frame {
+    width: 100%;
+    min-height: 600px;
+    border: none;
+    background: transparent;
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrap { margin-bottom: 48px; }
+  .progress-steps {
+    display: flex; align-items: center; gap: 0;
+    margin-bottom: 16px;
+  }
+  .progress-step {
+    display: flex; flex-direction: column; align-items: center;
+    flex: 1; position: relative; cursor: default;
+  }
+  .progress-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 18px; left: 50%; right: -50%;
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+    transition: background 0.4s;
+  }
+  .progress-step.done:not(:last-child)::after { background: var(--teal); }
+
+  .step-dot {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700;
+    border: 2px solid var(--border);
+    background: white;
+    color: var(--muted);
+    position: relative; z-index: 1;
+    transition: all 0.3s ease;
+  }
+  .progress-step.active .step-dot { border-color: var(--teal); background: var(--teal); color: white; box-shadow: 0 0 0 4px rgba(0,168,150,0.15); }
+  .progress-step.done .step-dot { border-color: var(--teal); background: var(--teal); color: white; }
+  .progress-step.done .step-dot::after { content: '✓'; font-size: 0.85rem; }
+  .progress-step.done .step-dot span { display: none; }
+
+  .step-label { font-size: 0.72rem; color: var(--muted); margin-top: 8px; font-weight: 500; text-align: center; white-space: nowrap; }
+  .progress-step.active .step-label { color: var(--teal); font-weight: 600; }
+  .progress-step.done .step-label { color: var(--navy); }
+
+  /* Progress bar track */
+  .progress-track { height: 3px; background: var(--border); border-radius: 100px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--teal-light)); border-radius: 100px; transition: width 0.4s ease; }
+
+  /* FORM STEPS */
+  .form-step { display: none; animation: stepIn 0.35s ease both; }
+  .form-step.active { display: block; }
+  @keyframes stepIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+
+  .step-heading { margin-bottom: 32px; }
+  .step-heading h3 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 8px; }
+  .step-heading p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* Fields */
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .field label .req { color: var(--teal); margin-left: 2px; }
+
+  .field input, .field select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: white;
+    outline: none;
+    transition: all 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .field input:focus, .field select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,168,150,0.12); }
+  .field input::placeholder { color: #b0b8c4; }
+  .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c6b7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; cursor: pointer; }
+  .field select option[value=""] { color: #b0b8c4; }
+
+  /* Multiple choice options (practice size) */
+  .choice-group { display: flex; flex-direction: column; gap: 10px; }
+  .choice-option {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .choice-option:hover { border-color: var(--teal); background: rgba(0,168,150,0.03); }
+  .choice-option.selected { border-color: var(--teal); background: rgba(0,168,150,0.06); }
+  .choice-option input[type="radio"] { display: none; }
+  .choice-key {
+    width: 28px; height: 28px; border-radius: 6px;
+    background: var(--cream); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem; font-weight: 700; color: var(--muted);
+    flex-shrink: 0; transition: all 0.2s;
+  }
+  .choice-option.selected .choice-key { background: var(--teal); border-color: var(--teal); color: white; }
+  .choice-label { font-size: 0.95rem; font-weight: 500; color: var(--text); }
+  .choice-option.selected .choice-label { color: var(--navy); font-weight: 600; }
+
+  /* Navigation buttons */
+  .form-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 32px; }
+  .btn-next, .btn-submit {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-next:hover, .btn-submit:hover { background: var(--teal-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,168,150,0.3); }
+  .btn-next::after { content: '→'; }
+  .btn-submit::after { content: '→'; }
+  .btn-back {
+    background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--muted); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 0;
+    transition: color 0.2s;
+  }
+  .btn-back::before { content: '←'; }
+  .btn-back:hover { color: var(--navy); }
+
+  .form-note { font-size: 0.78rem; color: var(--muted); margin-top: 16px; display: flex; align-items: center; gap: 6px; }
+  .form-note::before { content: '🔒'; font-size: 0.85rem; }
+
+  /* THANK YOU STATE */
+  .thankyou-step { display: none; text-align: center; padding: 20px 0; animation: stepIn 0.4s ease both; }
+  .thankyou-step.active { display: block; }
+  .thankyou-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(0,168,150,0.12);
+    border: 2px solid rgba(0,168,150,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; margin: 0 auto 28px;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+  @keyframes popIn { from { opacity:0; transform: scale(0.5); } to { opacity:1; transform: scale(1); } }
+  .thankyou-step h3 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--navy); letter-spacing: -0.03em; margin-bottom: 16px; }
+  .thankyou-step p { font-size: 1rem; color: var(--muted); line-height: 1.7; max-width: 380px; margin: 0 auto 12px; }
+  .thankyou-step p strong { color: var(--navy); }
+  .thankyou-perks { display: flex; flex-direction: column; gap: 10px; margin: 32px auto; max-width: 340px; }
+  .thankyou-perk { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: var(--muted); }
+  .thankyou-perk::before { content: '✓'; color: var(--teal); font-weight: 700; font-size: 1rem; }
+  .thankyou-back { font-size: 0.85rem; color: var(--teal); text-decoration: none; font-weight: 600; }
+  .thankyou-back:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer { background: #0a1520; padding: 60px 80px 40px; }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); gap: 40px; flex-wrap: wrap; }
+  .footer-brand p { color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-top: 12px; max-width: 260px; line-height: 1.6; }
+  .footer-links-group h4 { color: rgba(255,255,255,0.7); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .footer-links-group a { display: block; color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.88rem; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-links-group a:hover { color: var(--teal-light); }
+  .footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
+
+  @media (max-width: 1024px) {
+    nav ul { display: none !important; }
+    nav > a.btn { display: none !important; }
+    .nav-hamburger { display: flex !important; }
+    nav { padding: 16px 24px; }
+    .mobile-menu { display: none; position: fixed; top: 57px; left: 0; right: 0; z-index: 99; background: white; border-bottom: 1px solid var(--border); padding: 20px 24px 28px; flex-direction: column; gap: 4px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--navy); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu a:last-child { border-bottom: none; margin-top: 8px; }
+    .mobile-menu .btn-primary { text-align: center; border-radius: 6px; padding: 14px; }
+    .page-wrap { grid-template-columns: 1fr; }
+    .left-panel { min-height: auto; padding: 80px 24px 48px; }
+    .right-panel { padding: 48px 24px 64px; min-height: auto; }
+    footer { padding: 48px 40px 32px; }
+  }
 </style>
 </head>
 <body>
+
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Get Billing<span>Quotes</span></a>
   <ul>
@@ -53,42 +348,129 @@
   <a href="blog.html">Tips &amp; Advice</a>
   <a href="quote.html" class="btn btn-primary">Get Free Quotes</a>
 </div>
+
 <div class="page-wrap">
+
+  <!-- LEFT PANEL -->
   <div class="left-panel">
     <div class="left-badge">Free · No Obligation</div>
     <h2>You're 2 minutes away from <em>3 matched quotes.</em></h2>
     <p>Tell us about your practice and we'll connect you with billing companies that already specialize in your field — matched on specialty, size, and location.</p>
+
     <div class="trust-points">
-      <div class="trust-point"><div class="trust-point-icon">🎯</div><div class="trust-point-text"><strong>Matched, not blasted</strong><span>You only hear from 3 companies — all pre-matched to your specialty and location.</span></div></div>
-      <div class="trust-point"><div class="trust-point-icon">🔒</div><div class="trust-point-text"><strong>No spam, ever</strong><span>Your info is never sold or shared outside your 3 matched providers.</span></div></div>
-      <div class="trust-point"><div class="trust-point-icon">💸</div><div class="trust-point-text"><strong>Completely free</strong><span>Billing companies pay to be in our network. There's no cost to you.</span></div></div>
+      <div class="trust-point">
+        <div class="trust-point-icon">🎯</div>
+        <div class="trust-point-text">
+          <strong>Matched, not blasted</strong>
+          <span>You only hear from 3 companies — all pre-matched to your specialty and location.</span>
+        </div>
+      </div>
+      <div class="trust-point">
+        <div class="trust-point-icon">🔒</div>
+        <div class="trust-point-text">
+          <strong>No spam, ever</strong>
+          <span>Your info is never sold or shared outside your 3 matched providers.</span>
+        </div>
+      </div>
+      <div class="trust-point">
+        <div class="trust-point-icon">💸</div>
+        <div class="trust-point-text">
+          <strong>Completely free</strong>
+          <span>Billing companies pay to be in our network. There's no cost to you.</span>
+        </div>
+      </div>
     </div>
+
     <div class="left-stats">
       <div class="left-stat"><strong>100+</strong><span>Vetted companies</span></div>
       <div class="left-stat"><strong>60+</strong><span>Specialties</span></div>
       <div class="left-stat"><strong>All 50</strong><span>States</span></div>
     </div>
   </div>
+
+  <!-- RIGHT PANEL — FORM -->
   <div class="right-panel">
     <iframe class="tally-frame" src="https://tally.so/embed/Y5ZVxd?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" scrolling="no" title="Get Free Billing Quotes"></iframe>
     <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-  </div>
-</div>
+  </div><!-- end right-panel -->
+</div><!-- end page-wrap -->
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="index.html" class="nav-logo" style="color:white;">Get Billing<span style="color:var(--teal)">Quotes</span></a>
+      <a href="index.html" class="nav-logo" style="color: white;">Get Billing<span style="color: var(--teal)">Quotes</span></a>
       <p>Connecting independent medical practices with vetted billing companies. Free. No obligation.</p>
     </div>
-    <div class="footer-links-group"><h4>For Practices</h4><a href="#">Get Free Quotes</a><a href="index.html#how">How It Works</a><a href="index.html#pricing">Pricing Guide</a><a href="blog.html">Tips &amp; Advice</a></div>
-    <div class="footer-links-group"><h4>For Billing Companies</h4><a href="#">Join Our Network</a><a href="#">Lead Generation</a><a href="#">Contact Us</a></div>
-    <div class="footer-links-group"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">HIPAA Compliance</a></div>
+    <div class="footer-links-group">
+      <h4>For Practices</h4>
+      <a href="#">Get Free Quotes</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#pricing">Pricing Guide</a>
+      <a href="blog.html">Tips & Advice</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>For Billing Companies</h4>
+      <a href="#">Join Our Network</a>
+      <a href="#">Lead Generation</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">HIPAA Compliance</a>
+    </div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 Get Billing Quotes. All rights reserved.</p>
-    <p style="color:rgba(255,255,255,0.2);">We only work with US-based billing companies.</p>
+    <p style="color: rgba(255,255,255,0.2);">We only work with US-based billing companies.</p>
   </div>
 </footer>
-<script>function toggleMenu(btn){btn.classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');}</script>
+
+<script>
+  const progressWidths = { 1: '12.5%', 2: '37.5%', 3: '62.5%', 4: '87.5%' };
+
+  function goToStep(n) {
+    // Hide all steps
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step' + n).classList.add('active');
+
+    // Update progress dots
+    for (let i = 1; i <= 4; i++) {
+      const ps = document.getElementById('ps' + i);
+      ps.classList.remove('active', 'done');
+      if (i < n) ps.classList.add('done');
+      if (i === n) ps.classList.add('active');
+    }
+
+    // Update progress bar
+    document.getElementById('progressFill').style.width = progressWidths[n];
+
+    // Scroll right panel to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function selectChoice(el, name) {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+      r.closest('.choice-option').classList.remove('selected');
+    });
+    el.classList.add('selected');
+  }
+
+  function submitForm() {
+    // Hide form, progress — show thank you
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('thankyou').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+<script>
+  function toggleMenu(btn) {
+    btn.classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
 </body>
 </html>
